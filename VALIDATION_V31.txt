@@ -1,0 +1,36 @@
+PSLab v31 validation
+Environment: Linux GCC, C++17, -O2 -Wall -Wextra -Werror -pthread.
+All 52 standalone core test suites passed using authored fixtures.
+Five new suites also passed AddressSanitizer + UndefinedBehaviorSanitizer
+(-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer;
+ ASAN_OPTIONS=detect_leaks=0; UBSAN_OPTIONS=halt_on_error=1).
+
+New coverage:
+- cpu_privilege_tests: KUc instruction/data permissions, bytes and unaligned ops,
+  isolated-cache stores, pending load drain, EPC/BD, COP0 CU0/RI, LWC0/SWC0,
+  disabled-COP2 priority.
+- sio_timing_tests: real MMIO ACK after BIOS-style 100-tick IRQ clear;
+  baud-derived delay, 100-tick pulse, IRQ acknowledgement ordering,
+  final byte without ACK, CS/slot/reset cancellation; keyboard WASD/custom/SOCD.
+- gpu_compat_tests: GP1 6-bit command mirrors, 4-bit query selection,
+  v2 chip version, query 8, read latch, second-chip texture option,
+  65536 independent RGB quantization comparisons and mask semantics.
+- gpu_raster_equivalence_tests: 1200 seeded cases comparing every VRAM word
+  with the frozen v30.1 edge algorithm; clipping/winding/degeneracy,
+  flat/Gouraud, raw/modulated texture, window, dither/blend, mask handling.
+- cd_stream_tests: active stream survives Setloc; new target is consumed by
+  Read/Seek/Play; redundant Read keeps FIFO/XA/cadence; Pause returns old and
+  stopped status in distinct phases; Init and invalid targets handled.
+
+Legacy coverage retained: CPU/GTE/GPU/CD/SPU/MDEC/DMA/timers/audio/PS2;
+original CUE homebrew still boots and responds to pad input through SIO.
+Legacy tests were adjusted where they had encoded immediate Setloc movement
+or immediate ACK, both of which contradict the researched device behavior.
+
+Benchmark: BENCHMARK_V31.txt, synthetic raster only. It does not establish
+retail-game FPS, audio listening quality, or commercial-game compatibility.
+
+Not tested here: Visual Studio/MSVC build; Win32 menu/INI persistence/focus
+runtime; Windows audio playback; real BIOS; GTA2 intro progression;
+Gran Turismo 2 menus/races; protected-disc SubQ. The code package requires a
+Windows Release build and real-game testing before those can be confirmed.

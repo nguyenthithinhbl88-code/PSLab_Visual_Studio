@@ -1,0 +1,13 @@
+PSLab v32.1
+ALL 57 core suites PASS with GCC C++17 -O2 -Wall -Wextra -Werror -pthread.
+New ps2_saturating_tests also PASS ASan/UBSan (leak detection disabled).
+
+6 new unsigned saturating operations; 16800 seeded per-lane checks across
+8/16/32-bit lanes, saturation/underflow, aliased destination and r0.
+Nearby unsupported PEXTUW remains rejected without changing the destination.
+Exact 39-instruction replay from supplied v32 log(4) reaches BFC00878,
+first_fault empty, r26 full 128 bits zero, TLB entry preserved and Count=23.
+
+This fixes the reproduced missing opcode only. No real BIOS image is available
+locally, and no claim is made about later BIOS progress. Windows/MSVC runtime
+has not been tested here. v32 authored ROM/DMA/Gouraud and legacy PS1 tests pass.

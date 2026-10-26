@@ -1,0 +1,15 @@
+PSLab v36 validation
+66 core suites PASS, GCC C++17 -O2 -Wall -Wextra -Werror.
+All 3 new suites PASS ASan/UBSan (detect_leaks=0 due runtime environment).
+MCH: 16 backing slots/reset/aliases/guards, basic RDRAM response protocol,
+side-effect-free snapshot, reported SW and reconstructed last 12 instructions
+of log10 reach 9FC41360. Not a full Sony BIOS replay.
+VIF: BASE/OFFSET/ITOP, MPG wrap/NUM=0, limited V4-32 UNPACK/TOPS, cross-packet
+payload and whole-packet rollback including staged VU memory writes.
+DMA0/1: normal transfer, global/disable/stall gates, channel completion W1C,
+BUSERR/bounds, unsupported chain/reverse guards, actual EE-to-VIF upload demo.
+GS: 96 alpha boundary/fail cases, ALPHA blend, COLCLAMP clamp/wrap, negative
+rounding, PABE, DATE/PSM24, FBA order, masked Z NEVER/ALWAYS and FRAME mask.
+Prior tests updated to account for newly supported normal VIF DMA channels.
+No MSVC/Windows SDK/GUI runtime: Windows build/runtime untested here.
+No full BIOS boot, IOP/VU execution, full FPU arithmetic or PS2 gameplay claim.

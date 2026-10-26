@@ -1,0 +1,6 @@
+v36 seconds=0.653836 instructions=1000000 count=1000000 pc=9fc42934 next=9fc42938 r2=f423f video=35:d3e
+v36 seconds=0.670796 instructions=1000000 count=1000000 pc=9fc42934 next=9fc42938 r2=f423f video=35:d3e
+v36 seconds=0.567636 instructions=1000000 count=1000000 pc=9fc42934 next=9fc42938 r2=f423f video=35:d3e
+v37 seconds=0.0438496 instructions=1000000 count=1000000 pc=9fc42934 next=9fc42938 r2=f423f video=35:d3e
+v37 seconds=0.0302551 instructions=1000000 count=1000000 pc=9fc42934 next=9fc42938 r2=f423f video=35:d3e
+v37 seconds=0.0428066 instructions=1000000 count=1000000 pc=9fc42934 next=9fc42938 r2=f423f video=35:d3e

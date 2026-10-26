@@ -1,0 +1,13 @@
+PSLab v38 validation
+68 core suites PASS with GCC C++17 -O2 -Wall -Wextra -Werror.
+Cache and boot-progress suites PASS ASan/UBSan (detect_leaks=0).
+Seven coherent-memory CACHE maintenance operations: decode, signed address,
+normal progress, GPR/memory/tag preservation, no MMIO reads/writes.
+Unsupported operations and privilege failures retain state and failing PC.
+Reported BF470000 at BFC00904 advances to BFC00908.
+Exact final seven attempted PC/opcodes from the uploaded log replay to BFC00908.
+Authored store/SYNC/IXIN/jump executes newly written RAM code; delay-slot and
+reset/diagnostic checks pass. No full 15803558-instruction BIOS replay.
+No physical I/D-cache lines/writeback/BTAC/cache-TLB exceptions implemented.
+MSVC/Windows SDK/runtime unavailable: Windows/GUI build remains untested.
+Actual PS2 BIOS menu, IOP/VU execution and PS2 games still unconfirmed.

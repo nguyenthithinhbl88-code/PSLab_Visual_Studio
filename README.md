@@ -1,3 +1,107 @@
+# PSLab — bản 38: CACHE IXIN khi BIOS khởi tạo
+
+Log v37 đã in **32 MB RAM**, rồi dừng ở **BF470000 / BFC00904**.
+Bổ sung 7 lệnh bảo trì cache theo mô hình bộ nhớ đồng bộ hiện tại;
+replay đoạn lỗi tới **BFC00908**. Đọc **PS2_CACHE_BOOT_FIX_V38.md**.
+Chưa có cache I/D đầy đủ và chưa xác nhận giao diện BIOS PS2 thật.
+
+Các mục dưới đây là lịch sử cập nhật.
+
+# PSLab — bản 37: vá đọc MCH 16-bit và tăng tốc chạy BIOS
+
+Vá **LHU tại B000F480 / PC 9FC42140**, mở truy cập byte/halfword của các ô MCH.
+Tối ưu trace/fetch/bộ nhớ; thêm **Fast run** và log phân biệt vòng chờ Count,
+GS chưa bật hiển thị, chưa có gói vẽ. Xem **PS2_BOOT_PROGRESS_V37.md**.
+
+Kiểm tra lệnh lỗi đã tới **9FC42144**. Chưa xác nhận giao diện BIOS PS2 thật.
+Bản này không tự tạo menu hoặc ép bật PMODE để thay cho quá trình boot.
+
+Các mục dưới đây là lịch sử cập nhật.
+
+# PSLab — bản 36: MCH, DMA/VIF upload và GS alpha
+
+Vá **B000F410** trong log(10), mở khối **16 ô MCH word** (các ô chưa rõ chỉ
+là backing storage). Thêm normal DMA0/1 → VIF, MPG và UNPACK V4-32 giới hạn;
+nâng GS với alpha test/blending, COLCLAMP, PABE và destination-alpha test.
+
+Đọc **BIOS_PS2_REGISTER_MAP_V36.md** để xem CPU/GS cần những khối nào,
+luồng render và phần còn thiếu; **PS2_MEMORY_DMA_RENDER_V36.md** có phạm vi kỹ thuật.
+Replay 12 lệnh cuối tới **9FC41360**. Chưa xác nhận BIOS PS2 boot hoàn chỉnh.
+
+Các mục dưới đây là lịch sử cập nhật.
+
+# PSLab — bản 35: thanh ghi COP1 và lưu/nạp FPU
+
+Vá **SWC1 E7AC00B8 tại 9FC434A4** trong log(9). Thêm 32 thanh ghi FPU,
+FCR0/FCR31, LWC1/SWC1, MFC1/MTC1, CFC1/CTC1, MOV.S và nhánh BC1.
+Replay 18 lệnh prologue tới **9FC434A8**, kiểm tra ghi dữ liệu thật xuống stack.
+Đọc **PS2_COP1_BOOTSTRAP_V35.md**. Đây mới là chuyển dữ liệu COP1;
+phép tính số thực và BIOS PS2 boot hoàn chỉnh vẫn chưa được hỗ trợ/xác nhận.
+
+Các mục dưới đây là lịch sử cập nhật.
+
+# PSLab — bản 34: EE serial + thanh ghi VIF0/VIF1
+
+Vá lỗi **B000F100 (SIO_LCR)** trong log(8). Hoàn thiện nhóm **8 vị trí serial**,
+thêm **42 thanh ghi VIF** và **7 lệnh cấu hình VIF** qua CPU SQ.
+Serial xuất text vào log; VIF có reset/stall, quyền đọc/ghi và payload chia gói.
+Xem **PS2_SERIAL_VIF_UPDATE_V34.md** để biết phần hỗ trợ và giới hạn.
+Replay 20 lệnh cuối của routine serial tới **9FC43378**. Chưa xác nhận BIOS
+PS2 boot hoàn chỉnh; IOP/VU và truyền DMA VIF vẫn chưa thực thi.
+
+Các mục dưới đây là lịch sử cập nhật.
+
+# PSLab — bản 33: mở rộng theo nhóm thanh ghi IOP
+
+Thêm **71 vị trí thanh ghi**, gồm cấu hình bus, ngắt và cấu hình 13 kênh DMA;
+thêm **2 MiB RAM IOP + 40 KiB bộ nhớ VU**. Vá lỗi BF801470 trong log(7).
+Đọc **PS2_IOP_REGISTER_UPDATE_V33.md** để xem bảng thanh ghi và giới hạn.
+Replay 64 lệnh cuối tới **9FC430E0**. Chưa xác nhận BIOS PS2 boot hoàn chỉnh.
+IOP/VU chưa thực thi; DMA IOP mới hỗ trợ cấu hình, chưa truyền dữ liệu.
+
+Các mục dưới đây là lịch sử cập nhật.
+
+# PSLab — bản 32.3: vá ghi halfword BF801472
+
+Log(6) chạy 70.143 lệnh và đã ghi thanh ghi thiết lập GS. Bổ sung latch 16-bit
+1F801472 với alias/reset/log. Xem **PS2_IOP_HALFWORD_FIX_V323.md**.
+Replay 64 lệnh cuối vượt SH tới 9FC430D8; chưa xác nhận boot BIOS hoàn chỉnh.
+Các mục dưới đây là lịch sử cập nhật.
+
+# PSLab — bản 32.2: IOP bootstrap byte BF803204
+
+Log mới đã vượt PADDUW và chạy 70067 instruction. Hotfix bổ sung ánh xạ byte
+1F803204 qua các alias cho EE BIOS. Đọc **PS2_IOP_BOOT_FIX_V322.md** để xem
+phạm vi latch và giới hạn. Replay 64 instruction cuối đi qua LBU tới 9FC42B30.
+Chưa có IOP đầy đủ hoặc xác nhận BIOS Sony boot hoàn chỉnh.
+
+# PSLab — bản 32.1: sửa PADDUW khi khởi động BIOS PS2
+
+Hotfix cho opcode **7000D428 tại BFC00874**. Đọc **PS2_PADDUW_FIX_V321.md**.
+Thêm sáu lệnh unsigned saturation; replay đúng 39 instruction trong log đã tới BFC00878.
+Chưa xác nhận boot hoàn chỉnh BIOS Sony. Các mục bên dưới là lịch sử.
+
+# PSLab — bản 32: PS2 EE / DMA chain / GS
+
+Đọc **PS2_CPU_DMA_GS_V32.md**. Demo mới: **Tools → PS2 EE laboratory → Chain GPU demo → Run continuously**.
+CPU tự cấu hình GS, khởi động DMA chain và chờ hoàn tất. GS có tô màu Gouraud cơ bản.
+Kèm ROM thử tự tạo `examples/ps2_authored_pipeline_test.bin`, không phải BIOS Sony.
+**Chưa xác nhận BIOS PS2 boot hoàn chỉnh hoặc game PS2 chạy được.**
+PS1 giữ hotfix v31.1. Các ghi chú bên dưới là lịch sử.
+
+# PSLab — bản 31.1: hotfix nhận phím
+
+Đọc **PS1_KEYBOARD_FIX_V311.md**. Bổ sung đồng bộ phím trực tiếp từ Windows,
+thử Cross/Start bằng chuột và hiển thị Host/SIO để chẩn đoán báo cáo không điều khiển được GTA2.
+Chưa xác định được nguyên nhân cuối cùng từ ảnh menu; cần thử hotfix trên Windows.
+
+# PSLab — bản 31: PS1 CPU / GPU / bàn phím / CD streaming
+
+C++17 / Win32 / Visual Studio 2022. Đọc **PS1_UPDATE_V31.md** để xem thay đổi,
+cách thử GTA 2 và Gran Turismo 2, bảng phím và giới hạn đã biết.
+Mục tiêu là tăng khả năng tương thích; **chưa xác nhận GTA 2 qua intro hay GT2 vào đua**.
+PS2 giữ mức thử nghiệm v30.1. Các ghi chú phiên bản cũ bên dưới là lịch sử.
+
 # PSLab — bản 30.1
 
 C++17 / Win32 / Visual Studio 2022. PS2 thêm **EE hardware/MMIO, timer và ngắt, normal GIF DMA, CPU branch-likely và GIF PACKED**. Demo mới: Tools → PS2 EE laboratory → **DMA GPU demo → Run continuously**.
@@ -7,7 +111,7 @@ Hotfix 30.1 sửa Wired tại BFC00854, thêm COP0/TLB register bank; chưa có 
 Đọc **PS2_HARDWARE_V30.md** để xem phạm vi và giới hạn. **Chưa xác nhận boot BIOS PS2 hoàn chỉnh hay chạy game PS2 thương mại.**
 
 PS1 giữ audio WSOLA và tối ưu v29; xem **PS1_AUDIO_PERFORMANCE_V29.md**.
-Windows: build/startup target **pslab**, chạy pslab.exe, tiêu đề **PSLab v30.1 - PS2 Hardware and GIF DMA**.
+Windows: build/startup target **pslab**, chạy pslab.exe, tiêu đề **PSLab v32.2 - PS2 CPU, DMA Chain and GS**.
 
 # PS1 Lab — bản 24
 
@@ -32,9 +136,9 @@ Bản17.1 làm rõ đường boot và chẩn đoán lỗi GTA1; đọc **GTA1_BO
 
 ## Mở trong Visual Studio
 Giải nén vào thư mục mới. Cài workload Desktop development with C++ và
-C++ CMake tools for Windows -> File / Open / Folder -> chọn ps1-lab ->
+C++ CMake tools for Windows -> File / Open / Folder -> chọn thư mục chứa CMakeLists.txt ->
 windows-release -> Startup Item pslab.exe -> Ctrl+F5.
-Tiêu đề phải là **PSLab v30.1 - PS2 Hardware and GIF DMA**.
+Tiêu đề phải là **PSLab v32.2 - PS2 CPU, DMA Chain and GS**.
 
 Developer PowerShell:
 ```powershell

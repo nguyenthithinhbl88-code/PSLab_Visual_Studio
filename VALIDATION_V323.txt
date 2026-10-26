@@ -1,0 +1,10 @@
+PSLab v32.3 validation
+59 core suites PASS with GCC C++17 -O2 -Wall -Wextra -Werror.
+New IOP halfword suite and previous IOP byte suite PASS with ASan/UBSan
+(detect_leaks=0 due runtime environment).
+Reported SH at 9FC430D4 writes halfword 1 and advances to 9FC430D8.
+Supplied 64-attempt tail replay: PC/delay order, GS timing writes, latch value.
+Replay uses inferred r7 nonzero at entry; not a full Sony BIOS execution.
+Alias, reset, truncation, strict widths, neighbors and atomic rejection tested.
+No Windows SDK/MSVC runtime available: Visual Studio GUI build/runtime untested.
+Full Sony BIOS boot, IOP execution and PS2 gameplay unconfirmed.

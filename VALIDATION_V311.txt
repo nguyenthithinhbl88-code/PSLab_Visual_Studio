@@ -1,0 +1,10 @@
+PSLab v31.1 validation
+All 52 core test suites passed, GCC C++17 -O2 -Wall -Wextra -Werror -pthread.
+Changed input test checks physical-snapshot recovery after missed KEYDOWN/KEYUP,
+no sampling in background, complete SIO replies, last pressed reply retention.
+Existing delayed ACK, keyboard combo, CPU/CD/GPU/audio and PS2 tests still pass.
+
+The Win32 app has not been built with MSVC or run on Windows here.
+GetAsyncKeyState/foreground code and View test actions require user-side validation.
+No claim that the user's GTA2 controller problem has been fully reproduced/fixed.
+No SIO timing changes or hardcoded GTA2 patches in this hotfix.

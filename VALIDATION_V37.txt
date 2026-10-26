@@ -1,0 +1,15 @@
+PSLab v37 validation
+67 core suites PASS: GCC C++17 -O2 -Wall -Wextra -Werror.
+Boot-progress, memory-controller and VIF-upload suites PASS ASan/UBSan
+(detect_leaks=0 due runtime environment).
+MCH byte/halfword lanes, partial writes, aliases, bad widths/holes verified.
+Reported LHU 9463F480 now reads 7C30 and reaches 9FC42144.
+Trace ring chronological retention, original opcode snapshots, fetch faults,
+single-fetch MMIO count, Count-loop exact 42-instruction exit verified.
+Memory fast-path bounds/endian checks and all prior suites pass.
+Authored one-million-instruction Count benchmark: 3 runs v36 and 3 runs v37;
+identical instruction/Count/PC/next/GPR2/video signatures, timings in companion
+benchmark file. Synthetic host throughput only; not real BIOS FPS/Windows.
+No BIOS instruction skipping, artificial Count jump or forced GS display/menu.
+Win32 UI fast-run budget/MIPS display changed; MSVC/Windows runtime unavailable,
+so Windows build/runtime remains untested. Actual Sony BIOS menu unconfirmed.

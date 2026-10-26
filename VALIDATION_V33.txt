@@ -1,0 +1,14 @@
+PSLab v33 validation
+60 core suites PASS: GCC C++17 -O2 -Wall -Wextra -Werror.
+New grouped IOP suite and both prior IOP bootstrap suites PASS ASan/UBSan
+(detect_leaks=0 due runtime environment).
+21 configuration words; 13 DMA banks; SIF0 TADR; 6 DMA globals; IRQ side
+effects and snapshots; 1470/1472 independence; aliases, partial lanes, masks,
+DMA start rejection and invalid access guards validated.
+IOP 2 MiB RAM and all four VU memories: boundary/alias/quadword validation.
+Authored EE SQ/LQ pipeline copies 128-bit data from IOP RAM into VU1 data.
+User log(7) 64-attempt tail replay follows every logged PC/delay and reaches
+9FC430E0; preserves GS timing writes. Tail entry register snapshot unavailable:
+r8=0 from final snapshot, delay=true from trace. Not full Sony BIOS replay.
+MSVC/Windows SDK/GUI runtime unavailable: Visual Studio build untested here.
+Full BIOS boot, IOP/VU execution, IOP DMA transfers and PS2 games unconfirmed.

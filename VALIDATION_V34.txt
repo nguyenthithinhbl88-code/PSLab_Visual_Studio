@@ -1,0 +1,14 @@
+PSLab v34 validation
+62 core suites PASS with GCC C++17 -O2 -Wall -Wextra -Werror.
+EE SIO, VIF registers/stream and v33 IOP register suites PASS ASan/UBSan
+(detect_leaks=0 due runtime environment).
+SIO: config lanes/aliases, SDK init, TX ordering/filtering/bounded capture,
+empty RX/status, invalid width/neighbors, reset and diagnostic side effects.
+Reported SW at 9FC43374 now reaches 9FC43378 with LCR=20.
+Final 20 attempted instructions of log(8) replay to 9FC43378 with known/seeded
+entry arguments documented in PS2_SERIAL_VIF_UPDATE_V34.md.
+VIF: all 42 slots, access rules/reset/stall/FDR/ERR/MARK, 7 config commands,
+split payloads, atomic rejection and authored EE SQ-to-VIF1 pipeline.
+No full 633468-instruction replay of Sony BIOS; no complete BIOS boot claim.
+No Windows SDK/MSVC/runtime available: Visual Studio/GUI build untested here.
+IOP/VU execution, VIF DMA/UNPACK/MPG/PATH2, SPU2/CDVD and PS2 games absent.

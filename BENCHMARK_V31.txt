@@ -1,0 +1,16 @@
+PSLab v31 isolated raster benchmark
+GCC C++17 -O2, identical core objects, only gpu_render.cpp swapped.
+7 interleaved runs; 500 triangles, 320x240 clip; VRAM FNV hashes equal in every run.
+mode0 flat opaque; mode1 Gouraud; mode2 textured/semi synthetic framebuffer feedback.
+before mode0: median 194.232 ms; samples [194.232, 208.644, 191.622, 210.663, 206.59, 193.214, 191.013]; hash 679130228300456201
+after mode0: median 81.514 ms; samples [89.5262, 76.2388, 76.7555, 82.8717, 79.4431, 82.2643, 81.5141]; hash 679130228300456201
+mode0 elapsed-time change: -58.0%
+before mode1: median 308.648 ms; samples [277.77, 316.063, 305.338, 308.648, 305.722, 319.175, 330.813]; hash 430077489322498902
+after mode1: median 168.802 ms; samples [162.053, 162.163, 172.487, 168.802, 165.972, 182.641, 171.605]; hash 430077489322498902
+mode1 elapsed-time change: -45.3%
+before mode2: median 147.160 ms; samples [135.991, 157.869, 139.825, 147.16, 147.481, 142.112, 148.174]; hash 10152237715331455563
+after mode2: median 154.664 ms; samples [156.92, 154.617, 157.552, 154.725, 152.055, 151.043, 154.664]; hash 10152237715331455563
+mode2 elapsed-time change: +5.1%
+Synthetic benchmark only; not GTA2/GT2/GTA1 FPS or MSVC/Windows evidence.
+Reproduce current renderer: build/run ps1_gpu_benchmark. Compare old gpu_render.cpp with the same compiler/options and other objects.
+The first all-incremental experiment regressed the textured case. Final v31 keeps the old edge calculation there and moves the opaque fast path to untextured raster branches.

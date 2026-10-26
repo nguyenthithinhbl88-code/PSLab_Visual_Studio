@@ -1,0 +1,32 @@
+PSLab v32 validation
+GCC C++17, -O2 -Wall -Wextra -Werror -pthread: ALL 56 core suites PASS.
+New PS2 chain, CPU boot operations, Gouraud and ROM pipeline suites also PASS
+ASan/UBSan (-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer;
+ASAN_OPTIONS=detect_leaks=0; UBSAN_OPTIONS=halt_on_error=1).
+
+New coverage:
+1. All eight GIF source-chain tags, nested CALL/RET and both ASR slots,
+   overflow atomicity, empty RET, IRQ/TIE, resumed END/QWC, PCE priority,
+   scratchpad tag/payload wrap, GIF mask pause, BUSERR, bounded zero-QWC loops.
+2. Real EE instructions set GS privileged registers, configure DMAC, initiate
+   transfer and wait using BC0/CPCOND0 until D_STAT completion.
+3. Every byte offset/direction in 32/64-bit unaligned load/store; side bytes and
+   upper GPR preservation. MMI logical/copy/packed/HI1/LO1/SA/QFSRV golden cases,
+   EI/DI privilege and DMA conditional/likely branches.
+4. RGBA Gouraud triangle/line pixel checks, winding consistency, FBMSK/FBA.
+5. Authored 4 MiB reset ROM: ROM -> LQ/POR/SQ copy to empty RAM -> EE GS setup
+   -> REF/END chain -> GIF -> six GS primitives and 640x448 scanout.
+
+CLI linked/run successfully:
+pslab_ps2 --chain-demo --steps 1000
+pslab_ps2 --bios examples/ps2_authored_pipeline_test.bin --steps 5000
+Both: DMA tags=2, DMA quadwords=32, GS primitives=6, skipped=0, pixels=367107.
+The sample ROM is reproducible by running ps2_bios_pipeline_tests with its output
+filename as an argument. It contains no Sony BIOS or commercial game data.
+
+Legacy PS1 and PS2 suites retained, including normal GIF DMA and Wired regression.
+Legacy chain-rejection test now rejects interleave mode because chain is supported.
+
+Not verified: MSVC/Win32 build/runtime, Sony BIOS boot progression, PS2 games,
+cycle-accurate DMA/GS, full cache/MMU/IOP/VIF/VU/SPU2/CDVD. These are not inferred
+from authored test ROM success. Unsupported paths remain explicit errors.

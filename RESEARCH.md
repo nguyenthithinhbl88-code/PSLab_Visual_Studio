@@ -93,3 +93,154 @@ See PS2_HARDWARE_V30.md for source URLs and limitations. Original implementation
 
 ## v30.1: Wired stop in user screenshot
 See PS2_WIRED_FIX_V301.md. Adds CP0 staging registers, Wired/Random and a 48-entry register/probe TLB bank. No virtual-memory translation or full MMU behavior is claimed. The screenshot failure opcode is tested directly.
+
+
+## PS1 v31 — đối chiếu tài liệu ngày 2026-10-26
+
+- https://psx-spx.consoledev.net/controllersandmemorycards/ — digital pad ID 41/5A, active-low bits,
+  ACK không phát sau byte cuối; BIOS xóa IRQ cũ sau khoảng 100 clocks nên ACK không được tức thời.
+- https://psx-spx.consoledev.net/serialinterfacessio/ — DSR/IRQ, baud factor, CTRL acknowledgement.
+- https://psx-spx.consoledev.net/cpuspecifications/ — KUc, AdEL/AdES, COP0 CU0,
+  thanh ghi không tồn tại và LWC0/SWC0, ngoại lệ cho garbage registers.
+- https://psx-spx.consoledev.net/graphicsprocessingunitgpu/ — GP1 command mirrors,
+  GPU v2 query index mask 0xF, query 7/8, GP1(09h) và texture Y>=512.
+- https://psx-spx.consoledev.net/cdromdrive/ — Setloc không đổi luồng đang đọc;
+  Read lặp khi đang đọc tiếp tục luồng; Pause phản hồi trạng thái trước/sau.
+- https://psx-spx.consoledev.net/dev/ps1/cdr/cdromfileformats/diskimages/ — SBI/SubQ.
+  Chỉ nghiên cứu phạm vi; v31 chưa triển khai SBI hoặc LibCrypt.
+
+Đã thử mở DuckStation digital_controller.cpp và LICENSE qua trình duyệt nhưng không lấy được nội dung.
+Không nhập hoặc copy/paste mã nguồn DuckStation vào bản này. Phần triển khai mới viết tại đây từ tài liệu;
+file tham chiếu raster trong test giữ lại thuật toán PSLab v30.1 để kiểm tra tối ưu.
+Không có cơ sở từ các nguồn trên để kết luận lỗi GTA2 của người dùng đã được tái hiện hoặc đã hết.
+
+
+## PS1 v31.1 — nhận phím Windows
+
+https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getasynckeystate
+Bit cao cho biết đang giữ phím; không dùng bit thấp. Đồng bộ định kỳ khi app foreground
+để phục hồi trạng thái nếu mất KEYDOWN/KEYUP.
+https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getforegroundwindow
+https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getancestor
+Không lấy phím khi cửa sổ PS2 riêng hoặc app khác là foreground. Không đổi timing SIO
+khi chưa có log cho thấy lỗi ở đó; bổ sung bộ đếm gói đã trả và last pressed reply.
+
+
+## PS2 v32 — CPU, DMAC source chain và GS Gouraud
+
+- https://psi-rockin.github.io/ps2tek/index.html — bảng opcode MMI/BC0/EI/DI,
+  DMAtag ID/QWC/ADDR/IRQ/PCE, CALL/RET/ASR/ASP, resume từ CHCR.TAG,
+  nguồn RAM/scratchpad, ngắt DMAC và tham số GS.
+- https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/MMI.cpp — đối chiếu
+  thứ tự PCPYLD/PCPYUD, HI1/LO1, sign-extension và QFSRV.
+- https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/COP0.cpp — đối chiếu
+  quyền EI/DI qua EDI/EXL/ERL/KSU.
+- https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/R5900OpcodeImpl.cpp —
+  đối chiếu MFSA zero extension, MTSA, MTSAB/MTSAH.
+
+Phần bổ sung là triển khai mới trong PSLab, không vendoring/copy nguyên core PCSX2.
+GS Gouraud hiện là nội suy chức năng, không tuyên bố raster chính xác phần cứng.
+ROM thử đi kèm chỉ chứa mã test do dự án viết; không chứa BIOS Sony hoặc dữ liệu game.
+Không dùng ROM thử để suy ra BIOS Sony đã boot thành công.
+
+
+## PS2 v32.1 — PADDUW log regression
+
+https://sources.debian.org/src/binutils/2.43.1-5/opcodes/mips-opc.c — encoding PADDUW base 70000428;
+7000D428 is PADDUW r26,r0,r0.
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/MMI.cpp — unsigned per-lane saturation.
+https://psi-rockin.github.io/ps2tek/index.html — MMI1 opcode table for PADDUW/H/B and PSUBUW/H/B.
+Implementation written in PSLab; no imported emulator core. User-supplied log(4) supplies the
+39 attempted instructions for replay, not any missing instructions beyond the reported fault.
+
+
+## PS2 v32.2 — IOP page-3 bootstrap byte
+
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/Memory.cpp
+Maps EE physical page 1F803000 to IOP page-3 handlers for boot/debug accesses.
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/ps2/Iop/IopHwRead.cpp
+Page-3 byte reads use backing storage except 1F803100 (which returns FF).
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/ps2/Iop/IopHwWrite.cpp
+Byte writes update backing storage.
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/IopHw.cpp
+psxHwReset clears the IOP hardware backing array.
+
+The new PSLab model is deliberately limited to byte 1F803204 with reset=0
+and read/write counters. No hardware name/bit meaning or IOP-ready handshake is
+inferred. A supporting web search hit was an unverified third-party emulator log;
+it was not used as implementation evidence. Replay comes from user's log(5).
+
+## v32.3: IOP page-1 halfword storage at 1F801472
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/ps2/Iop/IopHwWrite.cpp
+_HwWrite_16or32_Page1 uses backing storage in its default case. There is no
+explicit 1472 case. PSLab implements only the logged halfword address as
+storage, without claiming real hardware side effects or widening all IOP pages.
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/ps2/Iop/IopHwRead.cpp
+Default page-1 read is backed by hardware storage. Real meaning of 1472 remains
+unverified. Regression input comes from the user's log(6), not an emulator ROM.
+
+## v33 grouped IOP bootstrap register and memory coverage
+PS2SDK SSBUS tables (retrieved upstream directly using HTTPS):
+https://raw.githubusercontent.com/ps2dev/ps2sdk/master/iop/system/ssbusc/src/ssbusc.c
+PS2SDK register identifiers:
+https://israpps.github.io/ps2sdk/iop__regs_8h_source.html
+ps2tek IOP interrupts/DMA; EE IOP RAM and VU code/data physical map:
+https://psi-rockin.github.io/ps2tek/index.html
+See PS2_IOP_REGISTER_UPDATE_V33.md for implemented behavior versus storage-only
+models. No IOP execution or DMA completion is synthesized. Configuration reset
+zeros (other than documented DPCR) are model policy, not verified silicon data.
+
+## v34 EE SIO and VIF bootstrap groups
+PS2SDK SIO register definitions and SDK init/polling behavior:
+https://ps2dev.github.io/ps2sdk/sio_8h.html
+https://ps2dev.github.io/ps2sdk/sio_8c_source.html
+PCSX2 SIO empty status and TX width handling, also inspected current upstream:
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/HwRead.cpp
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/HwWrite.cpp
+https://raw.githubusercontent.com/PCSX2/pcsx2/master/pcsx2/HwRead.cpp
+https://raw.githubusercontent.com/PCSX2/pcsx2/master/pcsx2/HwWrite.cpp
+ps2tek VIF I/O register map, permissions and configuration command format:
+https://psi-rockin.github.io/ps2tek/index.html
+See PS2_SERIAL_VIF_UPDATE_V34.md for precise scope. Multi-byte TX, empty RX,
+reset values and FBRST read are model policies, not silicon measurements.
+
+## v35 COP1 raw register and memory bootstrap
+https://docs.alexrp.com/mips/ee.pdf
+EE Core User's Manual: 32 FPRs, FCR0/FCR31, fixed/control fields and FPU limits.
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/FPU.cpp
+MFC1 sign extension, MTC1 raw bits, MOV.S and LWC1/SWC1 bus transfers.
+https://psi-rockin.github.io/ps2tek/index.html
+EE opcode/COP1 decoding and branch types. See PS2_COP1_BOOTSTRAP_V35.md for
+reserved-index/reset policies and exact limits. No arithmetic engine added.
+
+## v36 memory bootstrap, DMA/VIF upload and GS alpha
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/HwRead.cpp
+F410/RICM zero-read reference; RDRAM response values.
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/HwWrite.cpp
+Default backing writes and RICM INIT/busy behavior; unidentified registers
+remain explicitly experimental, with no claimed hardware bit meanings.
+https://raw.githubusercontent.com/PCSX2/pcsx2/master/pcsx2/Hw.h
+MCH block range F400..F500, RICM/DRD names.
+https://psi-rockin.github.io/ps2tek/index.html
+Normal DMA progress, VIF registers/MPG/UNPACK, GS ALPHA/COLCLAMP/TEST.
+See the v36 register map and implementation notes for exact support/limits.
+No third-party emulator code copied. Forum memory-init traces encountered in
+search were corroborative only, not the source of register bit semantics.
+
+## v37 MCH narrow accesses and boot execution cost
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/HwRead.cpp
+_hwRead8/_hwRead16 extract lanes from one aligned word-handler result.
+https://psi-rockin.github.io/ps2tek/index.html
+COP0 Count cycle counter and GS display configuration. No cycle skip added.
+https://pcsx2.net/docs/advanced/psx/
+EE/IOP system bus relationships. Real BIOS menu boot is still unconfirmed.
+See PS2_BOOT_PROGRESS_V37.md for partial-write policy, performance changes,
+validation limits and benchmark provenance. Original code, no external copy.
+
+## v38 CACHE bootstrap maintenance
+https://sources.debian.org/src/pcsx2/1.6.0%2Bdfsg-2/pcsx2/Cache.cpp
+Identifies 07 IXIN, 0C BFH, 14 DXWBIN, 16 DXIN, 18 DHWBIN, 1A DHIN,
+1C DHWOIN. Reference IXIN/BFH handling has no extra effect when those caches
+are not present. PSLab's D-cache maintenance is explicitly coherent-memory
+policy, not copied full cache/writeback emulation. Tag/data operations and
+cache/TLB exceptions remain unsupported. See PS2_CACHE_BOOT_FIX_V38.md.

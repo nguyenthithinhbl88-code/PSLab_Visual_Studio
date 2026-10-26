@@ -1,0 +1,13 @@
+PSLab v35 validation
+63 core suites PASS with GCC C++17 -O2 -Wall -Wextra -Werror.
+COP1, serial and VIF suites PASS ASan/UBSan (detect_leaks=0).
+32 FPR raw-bit patterns, GPR sign extension/high-half/zero behavior, MOV.S,
+LWC1/SWC1 through memory/MMIO, FCR masks/read-only identity, BC1 variants,
+delay-slot stores, CU1 checks, encoding/alignment/bus rejection validated.
+Reported SWC1 writes nonzero test data to 70003F48 and reaches 9FC434A8.
+18-attempt supplied prologue replay reaches 9FC434A8 with seeded entry state,
+inferred format byte and authored f12 pattern (user log lacked FPR contents).
+Legacy unsupported-opcode regression updated from now-supported MFC1 to ADD.S,
+which remains unsupported. First-fault PC/count checks retained.
+No full Sony BIOS replay, full FPU arithmetic or complete boot confirmation.
+MSVC/Windows SDK/runtime unavailable: Visual Studio GUI build untested here.

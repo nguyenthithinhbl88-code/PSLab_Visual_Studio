@@ -1,0 +1,17 @@
+PSLab v32.2 validation
+GCC C++17 -O2 -Wall -Wextra -Werror -pthread: ALL 58 core suites PASS.
+New ps2_iop_boot_tests also PASS ASan/UBSan, leak detection disabled.
+
+Coverage: reset=0, byte write/read and KSEG0/KSEG1/physical aliases,
+read/write counters, rejected wide/neighboring/quadword accesses without state
+changes, exact LBU 90430000 at 9FC42B2C, upper GPR preservation.
+The 64-instruction tail from supplied log(5) follows each PC and delay slot,
+then advances to 9FC42B30 with r3.low=0 and one IOP port read.
+Entry r3 of the countdown tail is derived from logged branch trips, not provided
+by a complete pre-trace snapshot. Full 70068-instruction BIOS execution was not
+reproduced. No subsequent BIOS opcode is invented from missing data.
+
+Legacy PADDUW replay, DMA-chain/ROM/Gouraud and PS1 suites retained.
+The byte-latch compatibility model is based on PCSX2 backing storage behavior;
+physical hardware semantics remain unverified. No IOP CPU or ready handshake.
+No complete Sony BIOS boot or Windows/MSVC runtime verified in this environment.

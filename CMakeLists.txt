@@ -11,7 +11,7 @@ if(PS1_IPO_SUPPORTED)
 endif()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-add_library(ps1_core src/core.cpp src/gte.cpp src/mdec.cpp src/gpu.cpp src/gpu_render.cpp src/gpu_video.cpp src/gpu_lines.cpp src/dma.cpp src/exe.cpp src/boot_io.cpp src/spu.cpp src/spu_audio.cpp src/spu_reverb.cpp src/spu_demo.cpp src/ps2_ee.cpp src/ps2_cop0.cpp src/ps2_hardware.cpp src/ps2_gs.cpp src/ps2_gs_render.cpp src/runner.cpp src/audio_resampler.cpp src/audio_stretcher.cpp src/audio_playback.cpp src/timers.cpp src/cdrom.cpp src/xa_audio.cpp src/disc_image.cpp src/iso9660.cpp src/disc_boot.cpp src/sio.cpp)
+add_library(ps1_core src/core.cpp src/gte.cpp src/mdec.cpp src/gpu.cpp src/gpu_render.cpp src/gpu_video.cpp src/gpu_lines.cpp src/dma.cpp src/exe.cpp src/boot_io.cpp src/spu.cpp src/spu_audio.cpp src/spu_reverb.cpp src/spu_demo.cpp src/ps2_cache.cpp src/ps2_boot_status.cpp src/ps2_memory_controller.cpp src/ps2_cop1.cpp src/ps2_peripherals.cpp src/ps2_iop.cpp src/ps2_ee.cpp src/ps2_cop0.cpp src/ps2_dma.cpp src/ps2_mmi.cpp src/ps2_hardware.cpp src/ps2_gs.cpp src/ps2_gs_render.cpp src/runner.cpp src/audio_resampler.cpp src/audio_stretcher.cpp src/audio_playback.cpp src/timers.cpp src/cdrom.cpp src/xa_audio.cpp src/disc_image.cpp src/iso9660.cpp src/disc_boot.cpp src/sio.cpp)
 target_include_directories(ps1_core PUBLIC src)
 target_link_libraries(ps1_core PUBLIC Threads::Threads)
 add_executable(ps1_lab src/main.cpp)
@@ -194,3 +194,74 @@ add_test(NAME ps2_packed_tests COMMAND ps2_packed_tests)
 add_executable(ps2_cop0_tlb_tests tests/ps2_cop0_tlb_tests.cpp)
 target_link_libraries(ps2_cop0_tlb_tests PRIVATE ps1_core)
 add_test(NAME ps2_cop0_tlb_tests COMMAND ps2_cop0_tlb_tests)
+
+foreach(test_name cpu_privilege_tests sio_timing_tests gpu_compat_tests gpu_raster_equivalence_tests)
+ add_executable(${test_name} tests/${test_name}.cpp)
+ target_link_libraries(${test_name} PRIVATE ps1_core)
+ add_test(NAME ${test_name} COMMAND ${test_name})
+endforeach()
+
+add_executable(cd_stream_tests tests/cd_stream_tests.cpp)
+target_link_libraries(cd_stream_tests PRIVATE ps1_core)
+add_test(NAME cd_stream_tests COMMAND cd_stream_tests ${CMAKE_CURRENT_SOURCE_DIR}/examples/catch_stars.cue)
+
+add_executable(ps1_gpu_benchmark tools/gpu_benchmark.cpp)
+target_link_libraries(ps1_gpu_benchmark PRIVATE ps1_core)
+
+foreach(test_name ps2_chain_tests ps2_cpu_boot_tests ps2_gouraud_tests)
+ add_executable(${test_name} tests/${test_name}.cpp)
+ target_link_libraries(${test_name} PRIVATE ps1_core)
+ add_test(NAME ${test_name} COMMAND ${test_name})
+endforeach()
+
+add_executable(ps2_bios_pipeline_tests tests/ps2_bios_pipeline_tests.cpp)
+target_link_libraries(ps2_bios_pipeline_tests PRIVATE ps1_core)
+add_test(NAME ps2_bios_pipeline_tests COMMAND ps2_bios_pipeline_tests)
+
+add_executable(ps2_saturating_tests tests/ps2_saturating_tests.cpp)
+target_link_libraries(ps2_saturating_tests PRIVATE ps1_core)
+add_test(NAME ps2_saturating_tests COMMAND ps2_saturating_tests)
+
+add_executable(ps2_iop_boot_tests tests/ps2_iop_boot_tests.cpp)
+target_link_libraries(ps2_iop_boot_tests PRIVATE ps1_core)
+add_test(NAME ps2_iop_boot_tests COMMAND ps2_iop_boot_tests)
+
+add_executable(ps2_iop_halfword_tests tests/ps2_iop_halfword_tests.cpp)
+target_link_libraries(ps2_iop_halfword_tests PRIVATE ps1_core)
+add_test(NAME ps2_iop_halfword_tests COMMAND ps2_iop_halfword_tests)
+
+add_executable(ps2_iop_register_tests tests/ps2_iop_register_tests.cpp)
+target_link_libraries(ps2_iop_register_tests PRIVATE ps1_core)
+add_test(NAME ps2_iop_register_tests COMMAND ps2_iop_register_tests)
+
+add_executable(ps2_serial_tests tests/ps2_serial_tests.cpp)
+target_link_libraries(ps2_serial_tests PRIVATE ps1_core)
+add_test(NAME ps2_serial_tests COMMAND ps2_serial_tests)
+
+add_executable(ps2_vif_register_tests tests/ps2_vif_register_tests.cpp)
+target_link_libraries(ps2_vif_register_tests PRIVATE ps1_core)
+add_test(NAME ps2_vif_register_tests COMMAND ps2_vif_register_tests)
+
+add_executable(ps2_cop1_tests tests/ps2_cop1_tests.cpp)
+target_link_libraries(ps2_cop1_tests PRIVATE ps1_core)
+add_test(NAME ps2_cop1_tests COMMAND ps2_cop1_tests)
+
+add_executable(ps2_memory_controller_tests tests/ps2_memory_controller_tests.cpp)
+target_link_libraries(ps2_memory_controller_tests PRIVATE ps1_core)
+add_test(NAME ps2_memory_controller_tests COMMAND ps2_memory_controller_tests)
+
+add_executable(ps2_vif_upload_tests tests/ps2_vif_upload_tests.cpp)
+target_link_libraries(ps2_vif_upload_tests PRIVATE ps1_core)
+add_test(NAME ps2_vif_upload_tests COMMAND ps2_vif_upload_tests)
+
+add_executable(ps2_gs_alpha_tests tests/ps2_gs_alpha_tests.cpp)
+target_link_libraries(ps2_gs_alpha_tests PRIVATE ps1_core)
+add_test(NAME ps2_gs_alpha_tests COMMAND ps2_gs_alpha_tests)
+
+add_executable(ps2_boot_progress_tests tests/ps2_boot_progress_tests.cpp)
+target_link_libraries(ps2_boot_progress_tests PRIVATE ps1_core)
+add_test(NAME ps2_boot_progress_tests COMMAND ps2_boot_progress_tests)
+
+add_executable(ps2_cache_tests tests/ps2_cache_tests.cpp)
+target_link_libraries(ps2_cache_tests PRIVATE ps1_core)
+add_test(NAME ps2_cache_tests COMMAND ps2_cache_tests)
