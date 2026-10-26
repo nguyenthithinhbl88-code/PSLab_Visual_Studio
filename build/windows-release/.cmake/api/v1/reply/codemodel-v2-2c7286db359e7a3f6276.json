@@ -1,0 +1,564 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Threads::Threads::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Threads__Threads-Release-9e8c71afff1ea29d8957.json",
+					"name" : "Threads::Threads",
+					"projectIndex" : 0
+				}
+			],
+			"directories" : 
+			[
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"build" : ".",
+					"jsonFile" : "directory-.-Release-f040eec181a89de70dbe.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53,
+						54
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "PSLab",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53,
+						54
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "audio_playback_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-audio_playback_tests-Release-2cebd8ded8afe74bbe33.json",
+					"name" : "audio_playback_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "audio_resampler_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-audio_resampler_tests-Release-efad6720501cf3a984da.json",
+					"name" : "audio_resampler_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "audio_stretcher_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-audio_stretcher_tests-Release-c14fad70d4e937e65b0f.json",
+					"name" : "audio_stretcher_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "boot_route_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-boot_route_tests-Release-a02c9daded34437b2f7b.json",
+					"name" : "boot_route_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "boot_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-boot_tests-Release-6800fd40d0b7b3e43686.json",
+					"name" : "boot_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cd_irq_spacing_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cd_irq_spacing_tests-Release-31eba4cb51b7d5ca5d8d.json",
+					"name" : "cd_irq_spacing_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cd_protocol_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cd_protocol_tests-Release-0db82833ec892b825f44.json",
+					"name" : "cd_protocol_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cd_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cd_tests-Release-f06de60feb4d16e995bd.json",
+					"name" : "cd_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cd_transfer_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cd_transfer_tests-Release-d07112edd29c6f689307.json",
+					"name" : "cd_transfer_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cdda_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cdda_tests-Release-b96e720fbe3e11df7d75.json",
+					"name" : "cdda_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cop2_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cop2_tests-Release-ca46d852a33cb0bbcbf0.json",
+					"name" : "cop2_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "core_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-core_tests-Release-374b72144e9649dd9027.json",
+					"name" : "core_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cpu_extended_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cpu_extended_tests-Release-1c63cdd3e9ffcbbb22bf.json",
+					"name" : "cpu_extended_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cpu_pipeline_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cpu_pipeline_tests-Release-01f0b44f476c04f14c6b.json",
+					"name" : "cpu_pipeline_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "dicr_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dicr_tests-Release-23064648b90bb2feecfc.json",
+					"name" : "dicr_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "disc_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-disc_tests-Release-efb233180748cc0574bf.json",
+					"name" : "disc_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "dma_chopping_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dma_chopping_tests-Release-097b0aee4bede176235d.json",
+					"name" : "dma_chopping_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "dma_subword_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dma_subword_tests-Release-144de118584634da0306.json",
+					"name" : "dma_subword_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "gpu_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gpu_tests-Release-1a70acd325b4bbeee4a6.json",
+					"name" : "gpu_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "gte_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gte_tests-Release-3aa0eb353ef80e7101f2.json",
+					"name" : "gte_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "keyboard_pad_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-keyboard_pad_tests-Release-d7fac9bef13439e17e3f.json",
+					"name" : "keyboard_pad_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "line_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-line_tests-Release-22fbdb299a49c98ac6f5.json",
+					"name" : "line_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mdec_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mdec_tests-Release-c0bfc6172624675ac045.json",
+					"name" : "mdec_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "memory_fastpath_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-memory_fastpath_tests-Release-961a840d967bd97d76dd.json",
+					"name" : "memory_fastpath_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mmio_compat_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mmio_compat_tests-Release-27021bfc15f03a88bd63.json",
+					"name" : "mmio_compat_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "performance_equivalence_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-performance_equivalence_tests-Release-ba459a2be9d0fb3f6418.json",
+					"name" : "performance_equivalence_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "platform_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-platform_tests-Release-8a2ff44cb748d99ab8d3.json",
+					"name" : "platform_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "polygon_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-polygon_tests-Release-891e6a45d7526562cf57.json",
+					"name" : "polygon_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps1_audio_probe::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps1_audio_probe-Release-1feb77ae1623b2cfb327.json",
+					"name" : "ps1_audio_probe",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps1_core::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps1_core-Release-f82fec00e6ff334ed470.json",
+					"name" : "ps1_core",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps1_core_benchmark::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps1_core_benchmark-Release-673d5f7ccea2751595b1.json",
+					"name" : "ps1_core_benchmark",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps1_gte_stress::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps1_gte_stress-Release-95b380b1fefd1644b57c.json",
+					"name" : "ps1_gte_stress",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps1_lab::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps1_lab-Release-2a09291d64203aefe894.json",
+					"name" : "ps1_lab",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps1_performance_probe::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps1_performance_probe-Release-260ac28baa7b9d327427.json",
+					"name" : "ps1_performance_probe",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps2_boot_mmio_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps2_boot_mmio_tests-Release-4f148320f16796bbde68.json",
+					"name" : "ps2_boot_mmio_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps2_branch_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps2_branch_tests-Release-182bf16e163fa7628dca.json",
+					"name" : "ps2_branch_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps2_cop0_tlb_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps2_cop0_tlb_tests-Release-fa81689ae00db622f5ab.json",
+					"name" : "ps2_cop0_tlb_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps2_ee_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps2_ee_tests-Release-d5117c1c5dfe5ad039e8.json",
+					"name" : "ps2_ee_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps2_gif_bios_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps2_gif_bios_tests-Release-f3aecfa33533a715620c.json",
+					"name" : "ps2_gif_bios_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps2_hardware_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps2_hardware_tests-Release-f9add8a5408bba23e827.json",
+					"name" : "ps2_hardware_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps2_packed_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps2_packed_tests-Release-4f913ae9d90aacadeab3.json",
+					"name" : "ps2_packed_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps2_register_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps2_register_tests-Release-1a28af988a715447a6fe.json",
+					"name" : "ps2_register_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps2_render_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps2_render_tests-Release-57470a8c417aa2746314.json",
+					"name" : "ps2_render_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ps2_sync_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ps2_sync_tests-Release-ea73af79042a3c49b35b.json",
+					"name" : "ps2_sync_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pslab::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pslab-Release-2f96138c87417314ff22.json",
+					"name" : "pslab",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pslab_ps2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pslab_ps2-Release-7dac73bc03466248b184.json",
+					"name" : "pslab_ps2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "runner_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-runner_tests-Release-9c11c2f13d957627e358.json",
+					"name" : "runner_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "spu_audio_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-spu_audio_tests-Release-5344ae751cbed7975112.json",
+					"name" : "spu_audio_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "spu_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-spu_tests-Release-c5921a9ae3abdebe4cff.json",
+					"name" : "spu_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "system_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-system_tests-Release-d439a1a6c9b5818c09e8.json",
+					"name" : "system_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "texture_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-texture_tests-Release-51e6c6826c4060f24259.json",
+					"name" : "texture_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "timer_sync_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-timer_sync_tests-Release-13166a15518daf596601.json",
+					"name" : "timer_sync_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "timer_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-timer_tests-Release-1b5f2a028935b6ca9e23.json",
+					"name" : "timer_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "video_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-video_tests-Release-81cdb120f971db518aea.json",
+					"name" : "video_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "xa_audio_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-xa_audio_tests-Release-395462558456eab8936e.json",
+					"name" : "xa_audio_tests",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/ACER/Downloads/PSLab_Visual_Studio (9)/PSLab_Visual_Studio/build/windows-release",
+		"source" : "C:/Users/ACER/Downloads/PSLab_Visual_Studio (9)/PSLab_Visual_Studio"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 10
+	}
+}

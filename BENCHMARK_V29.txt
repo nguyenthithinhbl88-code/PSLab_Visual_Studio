@@ -1,0 +1,18 @@
+Local GCC -O2 microbenchmarks, milliseconds, before/after. No commercial game or BIOS used.
+RAM byte/halfword (8 million iterations), isolated runs:
+before: 316.312, 279.023, 289.904
+after: 97.9051, 85.454, 88.6909
+J/NOP loop (3 million instructions), same isolated runs:
+before: 102.403, 96.4041, 105.241
+after: 104.492, 94.5192, 100.605
+All RAM checksums=1167418492.
+
+Mixed CPU workload (5 million instructions; LB/SB/LH/SH, increment/mask, J/NOP):
+before 135.991 ms, instr=5000000 PC=1048576 r9=38528 sample=0
+after 119.375 ms, instr=5000000 PC=1048576 r9=38528 sample=0
+before 130.447 ms, instr=5000000 PC=1048576 r9=38528 sample=0
+after 119.337 ms, instr=5000000 PC=1048576 r9=38528 sample=0
+before 154.585 ms, instr=5000000 PC=1048576 r9=38528 sample=0
+after 140.311 ms, instr=5000000 PC=1048576 r9=38528 sample=0
+
+These results do not establish GTA1 FPS or MSVC performance.

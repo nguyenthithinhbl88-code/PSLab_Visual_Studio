@@ -1,0 +1,50 @@
+PSLab v28.2 validation
+GCC C++17 -O2 -Wall -Wextra -Werror
+41 core suites passed.
+New F500/write-validation suite passed ASan/UBSan (LeakSanitizer disabled).
+24-instruction user trace replay reaches BFC0083C, F500=FFFFFFFF, writes=1.
+F500 is an experimental latch; hardware side effects remain unmodeled.
+No real BIOS continuation beyond uploaded trace or MSVC/Win32 validation here.
+
+PASS: short-lock PCM handoff, fade/mute, atomic underrun, early rate estimate, device queue feedback, restart/bounds and half-speed callback continuity
+PASS: adaptive playback interpolation/stereo, ratio consumption, mute, atomic underrun and half-speed continuity
+PASS: actual MIPS A0(2b) missing-kernel regression, valid handlers, route diagnostics, BIOS validation/reset/media retention, direct/BIOS restart and strict bus faults
+PASS: reset-ROM execution, memory/cache control, actual RAM B0 dispatch, TTY, POST, IO aliases/byte lanes, IRQ latches, bus fault address, bounded diagnostics
+PASS: Init first/second response spacing, delayed I_STAT ACK replay, actual MIPS two-IRQ completion
+PASS: CD reset IRQ default, busy lifecycle, unread response ACK drain, queued command, IRQ masking/edges, multi-response and actual MIPS host protocol
+PASS: CD registers/commands/events, BCD validation, IRQ latch, sector read + DMA3, ISO directory/exe execution, GP0 E1/E2 + GP1 state, bounds
+PASS: BFRD restart without sector loss, exact DMA bytes, partial/multi-sector DMA, 1x/2x cadence and reset
+PASS: original CUE PCM/track seek, ATV apply/cross/mono, mute, CDDA cadence, autopause/INT4, end-disc and CD-to-SPU capture/mix
+PASS: COP2 transfers/load delay, LWC2/SWC2, CU2/CE, alignment, commands, reported-PC regression, first-fault retention and BC2 branch delay
+PASS: demo, RAM aliases/endian, branch/load delays, zero register, bus guards
+PASS: HI/LO, multiply/divide edges, overflow, delay-slot exception, alignment, byte load, unaligned pairs, COP0, reserved instruction, arithmetic shift
+PASS: same-register load cancellation, ALU priority, distinct loads, COP0/COP2 pipeline, IRQ drain, full-width DMA stores and alignment exception
+PASS: exact BIOS DICR write replay, seven-channel enable matrix, W1C, pending flag persistence, IRQ3 edges/ack, bit31 read-only, actual OTC completion
+PASS: ISO/BIN/CUE modes and multi-file/track/pregaps, ISO SYSTEM.CNF paths, CD commands/raw DMA3/IRQ queue/GetID, digital pad, playable MIPS CD game and BIOS-media restart
+PASS: exact GTA chopped DMA, CPU windows, data/FIFO continuity, BCR/MADR, trigger/busy, DPCR suspension, IRQ gating/completion, cancellation and GPU/SPU bursts
+PASS: recorded GTA LBU opcode, all DMA0..6 register byte/halfword lanes, DPCR/DICR, aliases, load sign/delay and no read side effects
+PASS: GPU packet, fill rounding/wrap, zero height, odd upload/wrap, reset, GPUSTAT subset, CPU GPU demo, GP1 display source/modes/RGB24/blanking, 4:3 fit
+PASS: GTE register semantics, FLAG, sign count, FIFO/color conversion, matrix/vector, clipping/depth, UNR projection, interpolation and lighting golden vectors; 22 documented commands
+PASS: every keyboard mapping, combos/repeat/focus/release and actual SIO pad polling snapshot
+PASS: flat/Gouraud lines, endpoints/degenerate, polyline terminators, clip/offset/mask/blend, parser reset and bounds
+PASS: MIPS reset MMIO, tables/counts/status, incremental RLE/IDCT, mono4/8 and RGB15/24, signed/STP, DMA0/1 gates/backpressure/reordering/DICR and reset cancellation
+PASS: recorded GTA DICR store, DMA masks/W1C/mirrors/aliases, SPU byte pins and added status reads
+PASS: 4000 reference IDCT vectors, 300000 timer state/IRQ steps, fast fetch aliases/boundaries, trace, alignment and bus errors
+PASS: hardware/software CPU IRQ masks/vector/EPC/BD/load commit, DMA4/SPU wrap roundtrip/DICR, GPU readback/copy/DMA/info/IRQ, disconnected SIO
+PASS: triangles, winding, quad coverage, clipping, signed offset, mask, degenerate, CPU polygon demo, Gouraud triangle/quad, packet reset/framing
+PASS: 24-instruction uploaded BIOS trace through F500, aliases/reset/strict widths, write fault direction, BIOS write protection and RAM/scratchpad writes
+PASS: original EE demo, 128-bit registers/LQ/SQ, arithmetic, delay slots, memory aliases, ELF/BSS/atomic validation and BIOS mapping
+PASS: GIF CPU/FIFO/A+D/REGLIST, 50 states, signal/label/finish, strict faults, synthetic BIOS/RDRAM/KPUTCHAR/trace
+PASS: EE-to-GS program, HI/LO divide corner cases, COP0 moves/PRId/ERET, DSRA, GS lanes/aliases/masks/W1C/reset/local IRQ and explicit gaps
+PASS: BIOS SLTI regression, VRAM swizzle, primitives/masks/clipping/contexts, IMAGE/HWREG, display crop/BGRA and CPU/GIF GPU demo
+PASS: uploaded 13-instruction BIOS trace through SYNC.P, SYNC.L/P state/counters, memory visibility and strict unsupported instructions
+PASS: worker progress, join, paced restart, exception delivery and locked input/audio snapshots
+PASS: ADPCM predictors/sign/fallback, ADSR, 24 voices, KON/KOFF/ENDX/loop, stereo/mute, bounded queue, 768-clock sampling, capture/DMA IRQ9 and DMA status
+PASS: exact BIOS trace replay, SPU aliases/halfword/word, FIFO queue/manual flush, wrap, read-only status, overflow guard
+PASS: OTC trigger, block GPU DMA, DPCR pending start, multi-node list, cycle guard, EXE execution and invalid-file atomic rejection
+PASS: polygon/rectangle families, exact 2C808080, 4/8/15-bit textures, CLUT, raw/modulation, window, wrap, flip, masks, blend, dither, DMA packet split, GPUSTAT/log
+PASS: dot clock, HBlank source/IRQ, sync gates, bounded MIPS timer polling
+PASS: BIOS JAL/SH delay-slot replay, timer registers/aliases, target/overflow flags, IRQ latches, one-shot/toggle, divide8/stop, external clock wait
+PASS: 480i/progressive parity, side-effect-free status reads, display-disabled clock, PAL/NTSC fields, VBlank IRQ0/ack/CPU, bounded MIPS polling regression
+PASS: XA 4/8-bit mono/stereo, 37800/18900 rates, predictors/sign/saturation, bounded queue, file/channel filter, interleaved data and mute
+ALL 41 SUITES PASS
